@@ -26,18 +26,17 @@
 
         function update(image) {
             image.setAttribute('src', image.getAttribute(lazy));
-            unstyle(image.style);
+            unstyle(image.style, window.getComputedStyle(image));
         }
     }
 
-    function unstyle(style) {
+    function unstyle(style, computed) {
         remove(style);
         initialize(style, 'background-image');
         initialize(style, 'filter');
         initialize(style, 'opacity');
-        initialize(style, 'height');
-        // initialize(style, 'width');
-        // style.width = '100%';
+        initializeIfEq(style, computed, 'height', '0px'); // https://www.nytimes.com
+        initializeIfEq(style, computed, 'width', '0px');
     }
 
     function remove(style) {
@@ -48,5 +47,10 @@
 
     function initialize(style, property) {
         style.setProperty(property, 'initial', 'important');
+    }
+
+    function initializeIfEq(style, computed, property, value) {
+        if (computed.getPropertyValue(property) !== value) return;
+        initialize(style, property);
     }
 })();
