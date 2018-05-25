@@ -26,11 +26,11 @@
 
         function update(image) {
             image.setAttribute('src', image.getAttribute(lazy));
-            unstyle(image.style, window.getComputedStyle(image));
+            restyle(image.style, window.getComputedStyle(image));
         }
     }
 
-    function unstyle(style, computed) {
+    function restyle(style, computed) {
         // remove();
         initialize('background-image');
         initialize('filter');
