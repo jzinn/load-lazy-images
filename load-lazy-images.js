@@ -31,10 +31,11 @@
     }
 
     function unstyle(style, computed) {
-        remove(style);
+        // remove(style);
         initialize(style, 'background-image');
         initialize(style, 'filter');
         initialize(style, 'opacity');
+        initialize(style, 'padding'); // https://www.nytimes.com
         initializeIfEq(style, computed, 'height', '0px'); // https://www.nytimes.com
         initializeIfEq(style, computed, 'width', '0px');
     }
