@@ -46,12 +46,12 @@
         }
     }
 
-    function initialize(style, property) {
-        style.setProperty(property, 'initial', 'important');
-    }
-
     function initializeIfEq(style, computed, property, value) {
         if (computed.getPropertyValue(property) !== value) return;
         initialize(style, property);
+    }
+
+    function initialize(style, property) {
+        style.setProperty(property, 'initial', 'important');
     }
 })();
