@@ -31,27 +31,27 @@
     }
 
     function unstyle(style, computed) {
-        // remove(style);
-        initialize(style, 'background-image');
-        initialize(style, 'filter');
-        initialize(style, 'opacity');
-        initialize(style, 'padding'); // https://www.nytimes.com
-        initializeIfEq(style, computed, 'height', '0px'); // https://www.nytimes.com
-        initializeIfEq(style, computed, 'width', '0px');
-    }
+        // remove();
+        initialize('background-image');
+        initialize('filter');
+        initialize('opacity');
+        initialize('padding'); // https://www.nytimes.com
+        initializeIfEq('height', '0px'); // https://www.nytimes.com
+        initializeIfEq('width', '0px');
 
-    function remove(style) {
-        for (var i = style.length; i--;) {
-            style.removeProperty(style[i]);
+        function remove() {
+            for (var i = style.length; i--;) {
+                style.removeProperty(style[i]);
+            }
         }
-    }
 
-    function initializeIfEq(style, computed, property, value) {
-        if (computed.getPropertyValue(property) !== value) return;
-        initialize(style, property);
-    }
+        function initializeIfEq(property, value) {
+            if (computed.getPropertyValue(property) !== value) return;
+            initialize(property);
+        }
 
-    function initialize(style, property) {
-        style.setProperty(property, 'initial', 'important');
+        function initialize(property) {
+            style.setProperty(property, 'initial', 'important');
+        }
     }
 })();
