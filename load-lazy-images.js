@@ -45,8 +45,11 @@
         }
 
         function initializeIfEq(property, value) {
-            if (computed.getPropertyValue(property) !== value) return;
-            initialize(property);
+            if (eq()) initialize(property);
+
+            function eq() {
+                return computed.getPropertyValue(property) === value;
+            }
         }
 
         function initialize(property) {
