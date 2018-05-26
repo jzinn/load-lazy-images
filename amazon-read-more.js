@@ -11,13 +11,13 @@
 (function() {
     'use strict';
 
-    expanders().forEach(click);
+    expanders().forEach(clickIfReadMore);
 
     function expanders() {
         return document.querySelectorAll('.a-expander-prompt');
     }
 
-    function click(expander) {
+    function clickIfReadMore(expander) {
         if (readMore()) expander.click();
 
         function readMore() {
