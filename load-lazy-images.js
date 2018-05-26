@@ -37,7 +37,6 @@
         initialize('opacity');
         initialize('padding'); // https://www.nytimes.com
         initializeIfEq('height', '0px'); // https://www.nytimes.com
-        initializeIfEq('width', '0px');
 
         function remove() {
             for (var i = style.length; i--;) {
