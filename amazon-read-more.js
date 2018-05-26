@@ -18,10 +18,14 @@
     }
 
     function clickIfReadMore(expander) {
-        if (readMore()) expander.click();
+        if (readMore()) click();
 
         function readMore() {
             return expander.textContent.toLowerCase() === "read more";
+        }
+
+        function click() {
+            expander.click();
         }
     }
 })();
