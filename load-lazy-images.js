@@ -28,12 +28,12 @@
         }
 
         function attributes() {
-            return Array.from(image.attributes).filter(isntEqSrc);
+            return Array.from(image.attributes).filter(isData);
         }
     }
 
-    function isntEqSrc(attribute) {
-        return attribute.name !== 'src';
+    function isData(attribute) {
+        return attribute.name.toLowerCase().startsWith('data-');
     }
 
     function pick(attributes, className) {
