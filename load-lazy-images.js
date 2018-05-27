@@ -38,16 +38,16 @@
         initialize('padding'); // https://www.nytimes.com
         initializeIfEq('height', '0px'); // https://www.nytimes.com
 
+        function initialize(property) {
+            style.setProperty(property, 'initial', 'important');
+        }
+
         function initializeIfEq(property, value) {
             if (eq()) initialize(property);
 
             function eq() {
                 return computed.getPropertyValue(property) === value;
             }
-        }
-
-        function initialize(property) {
-            style.setProperty(property, 'initial', 'important');
         }
     }
 })();
