@@ -38,12 +38,12 @@
 
     function pick(attributes, className) {
         return attributes.find(primary) ||
-            /lazy/.test(className) &&
+            className.toLowerCase().includes('lazy') &&
             attributes.find(secondary);
     }
 
     function primary(attribute) {
-        return /^data(-\w+)*-src$/i.test(attribute.name) &&
+        return attribute.name.toLowerCase().endsWith('-src') &&
             isSrcValue(attribute.value);
     }
 
