@@ -52,7 +52,9 @@
     }
 
     function isSrcValue(value) {
-        return isURL(value) || isURL(location.protocol + value);
+        return isURL(value) ||
+            value.startsWith('//') &&
+            isURL(location.protocol + value);
     }
 
     function isURL(value) {
