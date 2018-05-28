@@ -37,6 +37,16 @@
         return attribute.name.toLowerCase().startsWith('data-');
     }
 
+    // Question: How to implement `pick` below for any number of filters?
+    //
+    // Constraints:
+    // *   No use of `var`, or use of `var` limited to a helper function that could belong in a general collection library.
+    // *   Stop immediately once a match is found.
+    //
+    // function pick(attributes, filters) {
+    //     return attributes.find(filters[0]) || attributes.find(filters[1]) || ...;
+    // }
+
     function pick(attributes, className) {
         return attributes.find(primary) ||
             className.toLowerCase().includes('lazy') &&
