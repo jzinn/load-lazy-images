@@ -53,9 +53,7 @@
     }
 
     function isSrcValue(value) {
-        return isURL(value) ||
-            value.startsWith('//') &&
-            isURL(location.protocol + value);
+        return isURL(value) || isURLWithoutProtocol(value);
     }
 
     function isURL(value) {
@@ -65,6 +63,11 @@
         } catch (TypeError) {
             return false;
         }
+    }
+
+    function isURLWithoutProtocol(value) {
+        return value.startsWith('//') &&
+            isURL(location.protocol + value);
     }
 
     function restyle(style, computed) {
