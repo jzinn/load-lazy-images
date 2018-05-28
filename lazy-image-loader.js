@@ -72,8 +72,7 @@
     }
 
     function isURLWithoutProtocol(value) {
-        return value.startsWith('//') &&
-            isURL('x:' + value);
+        return value.startsWith('//') && isURL('x:' + value);
     }
 
     function restyle(style, computed) {
