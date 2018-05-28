@@ -57,12 +57,8 @@
     }
 
     function isURL(value) {
-        try {
-            new URL(value);
-            return true;
-        } catch (TypeError) {
-            return false;
-        }
+        try { new URL(value); } catch (TypeError) { return false; }
+        return true;
     }
 
     function isURLWithoutProtocol(value) {
