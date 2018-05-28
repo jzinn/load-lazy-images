@@ -27,6 +27,7 @@
             restyle(image.style, window.getComputedStyle(image));
         }
 
+        // make sure "src" is not returned
         function attributes() {
             return Array.from(image.attributes).filter(isData);
         }
