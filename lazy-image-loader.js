@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Load Lazy Images
+// @name         Lazy Image Loader
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description
