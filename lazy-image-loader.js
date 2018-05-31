@@ -40,7 +40,9 @@
     // Question: How to implement `pick` below for any number of filters?
     //
     // Constraints:
-    // *   No use of `var`, or use of `var` limited to a helper function that could belong in a general collection library.
+    // *   No use of `var`, or use of `var` limited to a helper function
+    //     that could belong in a general collection library.
+    //
     // *   Stop immediately once a match is found.
     //
     // function pick(attributes, filters) {
