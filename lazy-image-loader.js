@@ -76,10 +76,12 @@
     }
 
     function restyle(style, computed) {
+        initialize('display');
         initialize('background-image');
         initialize('filter');
         initialize('opacity');
         initialize('padding'); // https://www.nytimes.com
+        initialize('visibility');
         initializeIfEq('height', '0px'); // https://www.nytimes.com
 
         function initialize(property) {
