@@ -19,7 +19,7 @@
     }
 
     function update(image) {
-        updateIf(pick(attributes(), image.className));
+        updateIf(pick(attributes(), claimsToBeLazy));
 
         function updateIf(attribute) {
             if (!attribute) return;
@@ -30,6 +30,10 @@
         // make sure "src" is not returned
         function attributes() {
             return Array.from(image.attributes).filter(isData);
+        }
+
+        function claimsToBeLazy() {
+            return /lazy/i.test(image.className);
         }
     }
 
@@ -49,9 +53,9 @@
     //     return attributes.find(filters[0]) || attributes.find(filters[1]) || ...;
     // }
 
-    function pick(attributes, className) {
+    function pick(attributes, claimsToBeLazy) {
         return attributes.find(primary) ||
-            /lazy/i.test(className) &&
+            claimsToBeLazy() &&
             attributes.find(secondary);
     }
 
