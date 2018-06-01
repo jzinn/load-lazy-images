@@ -34,7 +34,7 @@
     }
 
     function isData(attribute) {
-        return attribute.name.toLowerCase().startsWith('data-');
+        return /^data-/i.test(attribute.name);
     }
 
     // Question: How to implement `pick` below for any number of filters?
@@ -51,12 +51,12 @@
 
     function pick(attributes, className) {
         return attributes.find(primary) ||
-            className.toLowerCase().includes('lazy') &&
+            /lazy/i.test(className) &&
             attributes.find(secondary);
     }
 
     function primary(attribute) {
-        return attribute.name.toLowerCase().endsWith('-src') &&
+        return /\bsrc\b/i.test(attribute.name) &&
             isSrcValue(attribute.value);
     }
 
