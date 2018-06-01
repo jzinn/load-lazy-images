@@ -55,8 +55,7 @@
 
     function pick(attributes, claimsToBeLazy) {
         return attributes.find(primary) ||
-            claimsToBeLazy() &&
-            attributes.find(secondary);
+            claimsToBeLazy() && attributes.find(secondary);
     }
 
     function primary(attribute) {
