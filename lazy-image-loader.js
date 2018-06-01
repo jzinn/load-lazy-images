@@ -83,6 +83,7 @@
         initialize('filter');
         initialize('opacity');
         initialize('padding'); // https://www.nytimes.com
+        initialize('transition');
         initialize('visibility');
         initializeIfEq('height', '0px'); // https://www.nytimes.com
 
