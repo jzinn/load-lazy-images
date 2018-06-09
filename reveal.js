@@ -30,17 +30,19 @@
 		}
 
 		function candidate() {
-			// HTMLElement.offsetWidth
+			// HTMLElement.offsetParent
 			return big() && hidden(getComputedStyle(node));
 		}
 
 		function big() {
+			// HTMLElement.offsetWidth
 			// Element.clientWidth
 			// Element.scrollWidth
 			return node.clientWidth === width;
 		}
 
 		function hidden(computed) {
+			// computed.visibility === 'hidden';
 			return computed.opacity === '0';
 		}
 	}
@@ -62,4 +64,39 @@
 // document.body.clientWidth              /* width of <body> */
 // document.documentElement.clientWidth   /* width of <html> */
 // window.innerWidth                      /* window's width */
+
+// https://jsperf.com/createnodeiterator-vs-createtreewalker-vs-getelementsby
+//
+// /////
+//
+// var childNodes = document.getElementsByTagName("*");
+// var currentNode;
+//
+// for (var i = 0, ii = childNodes.length; i < ii; i++) {
+//   currentNode = childNodes[i];
+//   store.push(currentNode);
+// }
+//
+// ///////
+//
+// var iterator = document.createNodeIterator(document, NodeFilter.SHOW_ELEMENT);
+//
+// var store = [];
+// var currentNode;
+//
+// while (currentNode = iterator.nextNode()) {
+//   store.push(currentNode);
+// }
+//
+// //////
+//
+// var iterator = document.createTreeWalker(document, NodeFilter.SHOW_ELEMENT);
+//
+// var store = [];
+// var currentNode;
+//
+// while (currentNode = iterator.nextNode()) {
+//   store.push(currentNode);
+// }
+
 })(window.innerWidth);
