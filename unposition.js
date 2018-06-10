@@ -9,7 +9,7 @@
 // @grant        none
 // ==/UserScript==
 
-(function(width) {
+(function(WIDTH) {
 	'use strict';
 
 	process(document.documentElement);
@@ -32,7 +32,7 @@
 		}
 
 		function big() {
-			return node.clientWidth === width;
+			return node.clientWidth === WIDTH;
 		}
 	}
 

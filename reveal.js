@@ -11,7 +11,7 @@
 
 // http://www.idownloadblog.com/2016/11/28/tips-tricks-macbook-pro-touch-bar/
 
-(function(width) {
+(function(WIDTH) {
 	'use strict';
 
 	process(document.documentElement);
@@ -38,7 +38,7 @@
 			// HTMLElement.offsetWidth
 			// Element.clientWidth
 			// Element.scrollWidth
-			return node.clientWidth === width;
+			return node.clientWidth === WIDTH;
 		}
 	}
 
