@@ -40,11 +40,11 @@
 			// Element.scrollWidth
 			return node.clientWidth === width;
 		}
+	}
 
-		function hidden(computed) {
-			// computed.visibility === 'hidden';
-			return computed.opacity === '0';
-		}
+	function hidden(computed) {
+		// computed.visibility === 'hidden';
+		return computed.opacity === '0';
 	}
 
 	function restyle(style) {
