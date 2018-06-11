@@ -12,8 +12,64 @@
 (function(WIDTH) {
 	'use strict';
 
-	process(document.documentElement);
-	traverse(document.body);
+	onhtml(oncss(run));
+
+	function onhtml(fn) {
+		document.addEventListener('DOMContentLoaded', fn);
+	}
+
+	function oncss(fn) {
+		return oncss_;
+
+		function oncss_() {
+			wait(styleSheets(), fn);
+		}
+	}
+
+	function wait(styleSheets, fn) {
+		styleSheets.forEach(oncomplete(pump(styleSheets.length, fn)));
+	}
+
+	function styleSheets() {
+		return Array.from(document.styleSheets);
+	}
+
+	function oncomplete(fn) {
+		return oncomplete_;
+
+		function oncomplete_(element) {
+			element.onload = element.onerror = once(
+				fn,
+				'oncomplete function should only be called once'
+			);
+		}
+	}
+
+	function pump(n, fn) {
+		return pump_;
+
+		function pump_() {
+			if (--n === 0) fn();
+		}
+	}
+
+	function once(fn, msg) {
+		return a;
+
+		function a() {
+			fn();
+			fn = b;
+		}
+
+		function b() {
+			throw msg;
+		}
+	}
+
+	function run() {
+		process(document.documentElement);
+		traverse(document.body);
+	}
 
 	function traverse(node) {
 		if (process(node)) return;
