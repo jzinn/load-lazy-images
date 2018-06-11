@@ -9,23 +9,23 @@
 // ==/UserScript==
 
 (function() {
-    'use strict';
+	'use strict';
 
-    expanders().forEach(clickIfReadMore);
+	expanders().forEach(clickIfReadMore);
 
-    function expanders() {
-        return document.querySelectorAll('.a-expander-prompt');
-    }
+	function expanders() {
+		return document.querySelectorAll('.a-expander-prompt');
+	}
 
-    function clickIfReadMore(expander) {
-        if (readMore()) click();
+	function clickIfReadMore(expander) {
+		if (readMore()) click();
 
-        function readMore() {
-            return expander.textContent.toLowerCase() === 'read more';
-        }
+		function readMore() {
+			return expander.textContent.toLowerCase() === 'read more';
+		}
 
-        function click() {
-            expander.click();
-        }
-    }
+		function click() {
+			expander.click();
+		}
+	}
 })();
