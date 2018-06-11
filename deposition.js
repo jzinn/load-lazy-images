@@ -9,7 +9,7 @@
 // @grant        none
 // ==/UserScript==
 
-(function(WIDTH) {
+(function() {
 	'use strict';
 
 	onhtml(oncss(run));
@@ -69,33 +69,37 @@
 	}
 
 	function run() {
+		run_(window.innerWidth);
+	}
+
+	function run_(WIDTH) {
 		process(document.documentElement);
 		traverse(document.body);
-	}
 
-	function traverse(node) {
-		if (process(node)) return;
-		node.childNodes.forEach(traverse);
-	}
-
-	function process(node) {
-		return !element() || (candidate() && restyle_());
-
-		function element() {
-			return node.nodeType === 1;
+		function traverse(node) {
+			if (process(node)) return;
+			node.childNodes.forEach(traverse);
 		}
 
-		function candidate() {
-			return big() && positioned(getComputedStyle(node));
-		}
+		function process(node) {
+			return !element() || (candidate() && restyle_());
 
-		function big() {
-			return node.clientWidth === WIDTH;
-		}
+			function element() {
+				return node.nodeType === 1;
+			}
 
-		function restyle_() {
-			restyle(node.style);
-			return true;
+			function candidate() {
+				return big() && positioned(getComputedStyle(node));
+			}
+
+			function big() {
+				return node.clientWidth === WIDTH;
+			}
+
+			function restyle_() {
+				restyle(node.style);
+				return true;
+			}
 		}
 	}
 
@@ -110,4 +114,4 @@
 	function initialize(style, property) {
 		style.setProperty(property, 'initial', 'important');
 	}
-})(window.innerWidth);
+})();
