@@ -51,7 +51,9 @@
 		return pump_;
 
 		function pump_() {
-			if (--n === 0) fn();
+			if (--n !== 0) return;
+			fn();
+			fn = null;
 		}
 	}
 
