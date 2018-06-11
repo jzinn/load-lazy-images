@@ -41,8 +41,8 @@
 			attach(once(fn, 'oncomplete function should only be called once'));
 
 			function attach(fn_) {
-				element.onload = fn_;
-				element.onerror = fn_;
+				element.addEventListener('load', fn_);
+				element.addEventListener('error', fn_);
 			}
 		}
 	}
