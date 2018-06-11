@@ -21,10 +21,15 @@
 	function update(image) {
 		updateIf(pick(attributes(), claimsToBeLazy));
 
+		// This page sets opacity on images that are not lazy-loaded:
+		// https://www.artsy.net/article/artsy-editorial-painting-dogs-playing-poker-endured-100-years
 		function updateIf(attribute) {
-			if (!attribute) return;
-			image.src = attribute.value;
-			restyle(image.style, window.getComputedStyle(image));
+			if (attribute) {
+				image.src = attribute.value;
+				restyle(image.style, window.getComputedStyle(image));
+			} else if (!small()) {
+				restyle(image.style, window.getComputedStyle(image));
+			}
 		}
 
 		// make sure "src" is not returned
@@ -34,6 +39,10 @@
 
 		function claimsToBeLazy() {
 			return /lazy/i.test(image.className);
+		}
+
+		function small() {
+			return image.clientWidth < 150 && image.clientHeight < 100;
 		}
 	}
 
