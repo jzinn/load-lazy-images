@@ -79,7 +79,7 @@
 	}
 
 	function process(node) {
-		return !element() || (candidate() && restyle(node.style));
+		return !element() || (candidate() && restyle_());
 
 		function element() {
 			return node.nodeType === 1;
@@ -92,6 +92,11 @@
 		function big() {
 			return node.clientWidth === WIDTH;
 		}
+
+		function restyle_() {
+			restyle(node.style);
+			return true;
+		}
 	}
 
 	function positioned(computed) {
@@ -100,7 +105,6 @@
 
 	function restyle(style) {
 		initialize(style, 'position');
-		return true;
 	}
 
 	function initialize(style, property) {
