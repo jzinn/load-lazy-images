@@ -56,14 +56,14 @@
 	}
 
 	function once(fn, msg) {
-		return a;
+		return once_;
 
-		function a() {
+		function once_() {
 			fn();
-			fn = b;
+			fn = twice_;
 		}
 
-		function b() {
+		function twice_() {
 			throw msg;
 		}
 	}
