@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Unposition
+// @name         Deposition
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description
