@@ -21,7 +21,9 @@
         insertUnlessEmpty(images(), insert);
 
         function images() {
-            return Array.from(article.querySelectorAll('.hst-resgalleryitem img[load-src]'));
+            return Array.from(
+                article.querySelectorAll('.hst-resgalleryitem img[load-src]')
+            );
         }
 
         function insert(list) {
@@ -101,8 +103,7 @@
         style.setProperty('margin-bottom', '10px');
     }
 
-    function styleImage(style) {
-    }
+    function styleImage(style) {}
 
     function styleCaption(style) {
         style.setProperty('font-family', 'Arial, sans-serif');

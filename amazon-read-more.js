@@ -21,7 +21,7 @@
         if (readMore()) click();
 
         function readMore() {
-            return expander.textContent.toLowerCase() === "read more";
+            return expander.textContent.toLowerCase() === 'read more';
         }
 
         function click() {

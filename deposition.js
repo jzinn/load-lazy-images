@@ -21,7 +21,7 @@
 	}
 
 	function process(node) {
-		return !element() || candidate() && restyle(node.style);
+		return !element() || (candidate() && restyle(node.style));
 
 		function element() {
 			return node.nodeType === 1;

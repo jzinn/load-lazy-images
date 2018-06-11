@@ -54,13 +54,14 @@
     // }
 
     function pick(attributes, claimsToBeLazy) {
-        return attributes.find(primary) ||
-            claimsToBeLazy() && attributes.find(secondary);
+        return (
+            attributes.find(primary) ||
+            (claimsToBeLazy() && attributes.find(secondary))
+        );
     }
 
     function primary(attribute) {
-        return /\bsrc\b/i.test(attribute.name) &&
-            isSrcValue(attribute.value);
+        return /\bsrc\b/i.test(attribute.name) && isSrcValue(attribute.value);
     }
 
     function secondary(attribute) {
@@ -72,7 +73,11 @@
     }
 
     function isURL(value) {
-        try { new URL(value); } catch (TypeError) { return false; }
+        try {
+            new URL(value);
+        } catch (TypeError) {
+            return false;
+        }
         return true;
     }
 
