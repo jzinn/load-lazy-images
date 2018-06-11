@@ -27,7 +27,7 @@
 	}
 
 	function wait(styleSheets, fn) {
-		styleSheets.forEach(oncomplete(pump(styleSheets.length, fn)));
+		styleSheets.forEach(oncomplete(after(styleSheets.length, fn)));
 	}
 
 	function styleSheets() {
@@ -65,10 +65,10 @@
 		}
 	}
 
-	function pump(n, fn) {
-		return pump_;
+	function after(n, fn) {
+		return after_;
 
-		function pump_() {
+		function after_() {
 			if (--n) return;
 			fn();
 			fn = null;
