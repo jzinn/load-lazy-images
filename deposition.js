@@ -47,16 +47,6 @@
 		}
 	}
 
-	function pump(n, fn) {
-		return pump_;
-
-		function pump_() {
-			if (--n !== 0) return;
-			fn();
-			fn = null;
-		}
-	}
-
 	function once(fn, msg) {
 		return once_;
 
@@ -67,6 +57,16 @@
 
 		function twice_() {
 			throw msg;
+		}
+	}
+
+	function pump(n, fn) {
+		return pump_;
+
+		function pump_() {
+			if (--n !== 0) return;
+			fn();
+			fn = null;
 		}
 	}
 
