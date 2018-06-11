@@ -115,10 +115,10 @@
 	}
 
 	function restyle(style) {
-		initialize(style, 'position');
-	}
+		initialize('position');
 
-	function initialize(style, property) {
-		style.setProperty(property, 'initial', 'important');
+		function initialize(property) {
+			style.setProperty(property, 'initial', 'important');
+		}
 	}
 })();
