@@ -38,7 +38,7 @@
 		return oncomplete_;
 
 		function oncomplete_(element) {
-			attach(once(fn, 'oncomplete function should only be called once'));
+			attach(once(fn, yelp('oncomplete function should only be called once')));
 
 			function attach(fn_) {
 				element.addEventListener('load', fn_);
@@ -47,16 +47,21 @@
 		}
 	}
 
-	function once(fn, err) {
+	function once(fn, again) {
 		return once_;
 
 		function once_() {
+			if (!fn) return;
 			fn();
-			fn = again_;
+			fn = again;
 		}
+	}
 
-		function again_() {
-			throw err;
+	function yelp(msg) {
+		return yelp_;
+
+		function yelp_() {
+			throw msg;
 		}
 	}
 
