@@ -47,7 +47,7 @@
 		}
 	}
 
-	function once(fn, msg) {
+	function once(fn, err) {
 		return once_;
 
 		function once_() {
@@ -56,7 +56,7 @@
 		}
 
 		function again_() {
-			throw msg;
+			throw err;
 		}
 	}
 
