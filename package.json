@@ -1,26 +1,13 @@
 {
-  "private": true,
-  "devDependencies": {
-    "prettier": "^1.13.5"
-  },
-  "scripts": {
-    "format": "prettier --write \"{*.js,package.json}\""
-  },
-  "prettier": {
-    "singleQuote": true,
-    "overrides": [
-      {
-        "files": "{amazon-read-more.js,lazy-image-loader.js,sfgate-hearst-gallery-expander.js}",
-        "options": {
-          "tabWidth": 4
-        }
-      },
-      {
-        "files": "{deposition.js,unveil.js,deposition.js}",
-        "options": {
-          "useTabs": true
-        }
-      }
-    ]
-  }
+	"private": true,
+	"devDependencies": {
+		"prettier": "^1.13.5"
+	},
+	"scripts": {
+		"format": "prettier --write \"{*.js,package.json}\""
+	},
+	"prettier": {
+		"singleQuote": true,
+		"useTabs": true
+	}
 }
