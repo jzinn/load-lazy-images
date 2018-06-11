@@ -96,10 +96,10 @@
 			}
 
 			function candidate() {
-				return big() && positioned(getComputedStyle(node));
+				return wide() && positioned(getComputedStyle(node));
 			}
 
-			function big() {
+			function wide() {
 				return node.clientWidth === WIDTH;
 			}
 
