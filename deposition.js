@@ -52,10 +52,10 @@
 
 		function once_() {
 			fn();
-			fn = twice_;
+			fn = again_;
 		}
 
-		function twice_() {
+		function again_() {
 			throw msg;
 		}
 	}
