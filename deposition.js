@@ -96,7 +96,7 @@
 			}
 
 			function candidate() {
-				return wide() && positioned(getComputedStyle(node));
+				return wide() && positioned(getComputedStyle(node).position);
 			}
 
 			function wide() {
@@ -105,8 +105,8 @@
 		}
 	}
 
-	function positioned(computed) {
-		return computed.position === 'fixed' || computed.position === 'sticky';
+	function positioned(position) {
+		return position === 'fixed' || position === 'sticky';
 	}
 
 	function restyle(style) {
