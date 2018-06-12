@@ -89,23 +89,18 @@
 		}
 
 		function process(node) {
-			return !element() || (wide() && positioned_() && restyle_());
+			return !element() || (candidate() && (restyle(node.style), true));
 
 			function element() {
 				return node.nodeType === 1;
 			}
 
+			function candidate() {
+				return wide() && positioned(getComputedStyle(node));
+			}
+
 			function wide() {
 				return node.clientWidth === WIDTH;
-			}
-
-			function positioned_() {
-				return positioned(getComputedStyle(node));
-			}
-
-			function restyle_() {
-				restyle(node.style);
-				return true;
 			}
 		}
 	}
