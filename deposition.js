@@ -12,16 +12,27 @@
 (function() {
 	'use strict';
 
+	console.log('EEEEEEEEEEEEEEEEEEEEE');
+
 	onhtml(oncss(run));
 
 	function onhtml(fn) {
-		document.addEventListener('DOMContentLoaded', fn);
+		loading() ? listen() : fn();
+
+		function loading() {
+			return document.readyState === 'loading';
+		}
+
+		function listen() {
+			document.addEventListener('DOMContentLoaded', fn);
+		}
 	}
 
 	function oncss(fn) {
 		return oncss_;
 
 		function oncss_() {
+			console.log('oncss_');
 			wait(styleSheets(), fn);
 		}
 	}
@@ -38,6 +49,7 @@
 		return oncomplete_;
 
 		function oncomplete_(element) {
+			console.log(element);
 			attach(once(fn, yelp('oncomplete function should only be called once')));
 
 			function attach(fn_) {
