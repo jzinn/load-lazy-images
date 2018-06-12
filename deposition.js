@@ -69,11 +69,11 @@
 		}
 	}
 
-	function yelp(msg) {
+	function yelp(expression) {
 		return yelp_;
 
 		function yelp_() {
-			throw msg;
+			throw expression;
 		}
 	}
 
