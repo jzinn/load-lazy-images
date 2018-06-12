@@ -12,10 +12,11 @@
 (function() {
 	'use strict';
 
-	images().forEach(update);
+	elementsBy('img').forEach(update);
+	elementsBy('iframe').forEach(update);
 
-	function images() {
-		return Array.from(document.getElementsByTagName('img'));
+	function elementsBy(tagName) {
+		return Array.from(document.getElementsByTagName(tagName));
 	}
 
 	function update(image) {
@@ -78,12 +79,12 @@
 	}
 
 	function isSrcValue(value) {
-		return isURL(value) || isURLWithoutProtocol(value);
+		return isURL(value) || isURLWithoutProtocol(value) || isURLPath(value);
 	}
 
-	function isURL(value) {
+	function isURL(value, base) {
 		try {
-			new URL(value);
+			new URL(value, base);
 		} catch (TypeError) {
 			return false;
 		}
@@ -92,6 +93,10 @@
 
 	function isURLWithoutProtocol(value) {
 		return value.startsWith('//') && isURL('x:' + value);
+	}
+
+	function isURLPath(value) {
+		return isURL(value, 'http://example.com');
 	}
 
 	function restyle(style, computed) {
