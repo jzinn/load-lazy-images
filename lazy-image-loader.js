@@ -43,6 +43,7 @@
 		}
 
 		function small() {
+			// The default size of HTML replaced elements is 150px by 100px.
 			return image.clientWidth < 150 && image.clientHeight < 100;
 		}
 	}
