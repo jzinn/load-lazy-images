@@ -17,9 +17,9 @@
 	onhtml(oncss(run));
 
 	function onhtml(fn) {
-		loading() ? listen() : fn();
+		loading() ? waitEvent() : fn();
 
-		function listen() {
+		function waitEvent() {
 			document.addEventListener('DOMContentLoaded', fn);
 		}
 	}
