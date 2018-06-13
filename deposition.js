@@ -17,10 +17,14 @@
 	onhtml(oncss(run));
 
 	function onhtml(fn) {
-		loading() ? waitEvent() : fn();
+		loading() ? waitEvent() : waitTick();
 
 		function waitEvent() {
 			document.addEventListener('DOMContentLoaded', fn);
+		}
+
+		function waitTick() {
+			setTimeout(fn);
 		}
 	}
 
@@ -82,7 +86,7 @@
 
 		function after_() {
 			if (--n) return;
-			fn();
+			setTimeout(fn);
 			fn = null;
 		}
 	}
