@@ -19,13 +19,13 @@
 	function onhtml(fn) {
 		loading() ? listen() : fn();
 
-		function loading() {
-			return document.readyState === 'loading';
-		}
-
 		function listen() {
 			document.addEventListener('DOMContentLoaded', fn);
 		}
+	}
+
+	function loading() {
+		return document.readyState === 'loading';
 	}
 
 	function oncss(fn) {
