@@ -11,44 +11,36 @@
 (function() {
 	'use strict';
 
-	link('next').forEach(onkey('ArrowRight'));
-	link('prev').forEach(onkey('ArrowLeft'));
+	onkey('ArrowRight', link('next'));
+	onkey('ArrowLeft', link('prev'));
 
 	function link(rel) {
-		return links(rel).slice(0, 1);
+		return document.querySelectorAll('head link[rel=' + rel + '][href]')[0];
 	}
 
-	function links(rel) {
-		return Array.from(
-			document.querySelectorAll('head link[rel=' + rel + '][href]')
-		);
-	}
+	function onkey(key, link) {
+		if (!link) return;
 
-	function onkey(value) {
-		return onkey_;
+		document.addEventListener('keyup', listener);
 
-		function onkey_(link) {
-			document.addEventListener('keyup', listener);
+		function listener(event) {
+			if (active() && targeted() && matches()) navigate();
 
-			function listener(event) {
-				if (active() && targeted() && matches()) navigate();
-
-				function active() {
-					return !event.defaultPrevented;
-				}
-
-				function targeted() {
-					return event.target === document.body;
-				}
-
-				function matches() {
-					return event.key === value;
-				}
+			function active() {
+				return !event.defaultPrevented;
 			}
 
-			function navigate() {
-				window.location.href = link.href;
+			function targeted() {
+				return event.target === document.body;
 			}
+
+			function matches() {
+				return event.key === key;
+			}
+		}
+
+		function navigate() {
+			window.location.href = link.href;
 		}
 	}
 })();
