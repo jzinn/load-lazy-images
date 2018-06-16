@@ -51,6 +51,10 @@
 		// initialize(style, 'display');
 		// initialize(style, 'filter');
 		initialize(style, 'opacity');
+
+		// https://www.theatlantic.com/technology/archive/2018/05/charging-electric-scooters-is-a-cutthroat-business/560747/
+		initialize(style, 'position');
+
 		initialize(style, 'transition');
 		// initialize(style, 'visibility');
 		return true;
