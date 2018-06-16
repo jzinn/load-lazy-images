@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Reveal
+// @name         Unveil
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description
