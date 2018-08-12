@@ -45,10 +45,10 @@
 		function button() {
 			return modal.querySelector('button.dismiss');
 		}
+	}
 
-		function click(button) {
-			if (!button) return;
-			button.click();
-		}
+	function click(button) {
+		if (!button) return;
+		button.click();
 	}
 })();
