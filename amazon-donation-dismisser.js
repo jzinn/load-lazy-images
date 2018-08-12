@@ -12,18 +12,22 @@
 	'use strict';
 
 	modals()
-		.filter(containing(keywords()))
+		.filter(containing(text, keywords()))
 		.forEach(dismiss);
 
 	function modals() {
 		return Array.from(document.getElementsByClassName('a-modal-scroller'));
 	}
 
-	function containing(keywords) {
+	function text(modal) {
+		return modal.textContent;
+	}
+
+	function containing(text, keywords) {
 		return containing_;
 
 		function containing_(modal) {
-			return search(modal.textContent);
+			return search(text(modal));
 		}
 
 		function search(text) {
