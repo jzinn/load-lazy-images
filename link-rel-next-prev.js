@@ -16,7 +16,7 @@
 	onkey('ArrowLeft', link('prev'));
 
 	function link(rel) {
-		return document.querySelectorAll('head link[rel=' + rel + '][href]')[0];
+		return document.querySelector('head link[rel=' + rel + '][href]');
 	}
 
 	function onkey(key, link) {
