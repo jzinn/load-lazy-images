@@ -66,22 +66,25 @@
 	function once(fn, again) {
 		return start(a);
 
-		function start(state) {
-			return transition;
-
-			function transition() {
-				state = state();
-			}
-		}
-
-		function a() {
+		function a(next) {
 			fn();
-			return b;
+			next(b);
 		}
 
 		function b() {
 			again();
-			return b;
+		}
+	}
+
+	function start(state) {
+		return transition;
+
+		function transition() {
+			state(next);
+		}
+
+		function next(state_) {
+			state = state_;
 		}
 	}
 
