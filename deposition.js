@@ -67,8 +67,7 @@
 		return once_;
 
 		function once_() {
-			if (!fn) return;
-			fn();
+			if (fn) fn();
 			fn = again;
 		}
 	}
