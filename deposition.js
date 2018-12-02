@@ -68,6 +68,7 @@
 
 		function a(next) {
 			first();
+			first = null;
 			next(b);
 		}
 
