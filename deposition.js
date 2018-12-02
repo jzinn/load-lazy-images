@@ -64,11 +64,24 @@
 	}
 
 	function once(fn, again) {
-		return once_;
+		return start(a);
 
-		function once_() {
-			if (fn) fn();
-			fn = again;
+		function start(state) {
+			return transition;
+
+			function transition() {
+				state = state();
+			}
+		}
+
+		function a() {
+			fn();
+			return b;
+		}
+
+		function b() {
+			again();
+			return b;
 		}
 	}
 
