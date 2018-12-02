@@ -63,16 +63,16 @@
 		}
 	}
 
-	function once(fn, again) {
+	function once(first, rest) {
 		return start(a);
 
 		function a(next) {
-			fn();
+			first();
 			next(b);
 		}
 
 		function b() {
-			again();
+			rest();
 		}
 	}
 
