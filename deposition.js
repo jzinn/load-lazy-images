@@ -111,7 +111,7 @@
 	}
 
 	function run() {
-		run_(window.innerWidth);
+		run_(document.body.clientWidth);
 	}
 
 	function run_(WIDTH) {
