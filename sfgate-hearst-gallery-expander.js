@@ -22,7 +22,7 @@
 
 		function images() {
 			return Array.from(
-				article.querySelectorAll('.hst-resgalleryitem img[load-src]')
+				article.querySelectorAll('.hst-resgalleryitem img[data-src]')
 			);
 		}
 
@@ -76,7 +76,7 @@
 			function configure(e) {
 				// e.cassList.add('tamper-list-item-image');
 				styleImage(e.style);
-				e.setAttribute('src', image.getAttribute('load-src'));
+				e.setAttribute('src', image.getAttribute('data-src'));
 				return e;
 			}
 		}

@@ -5,6 +5,7 @@
 // @description  try to take over the world!
 // @author       You
 // @match        http://tavmjong.free.fr/INKSCAPE/MANUAL/html/*.html
+// @match        http://www.open-std.org/*
 // @grant        none
 // ==/UserScript==
 

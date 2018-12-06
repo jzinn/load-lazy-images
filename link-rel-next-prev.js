@@ -4,8 +4,8 @@
 // @version      0.1
 // @description  try to take over the world!
 // @author       You
-// @match        http://tavmjong.free.fr/INKSCAPE/MANUAL/html/*.html
-// @match        https://*.readthedocs.io/*
+// @match        http://*/*
+// @match        https://*/*
 // @grant        none
 // ==/UserScript==
 
@@ -16,7 +16,7 @@
 	onkey('ArrowLeft', link('prev'));
 
 	function link(rel) {
-		return document.querySelector('head link[rel=' + rel + '][href]');
+		return document.querySelector('head > link[rel=' + rel + '][href]');
 	}
 
 	function onkey(key, link) {

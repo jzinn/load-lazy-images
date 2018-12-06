@@ -12,7 +12,7 @@
 	'use strict';
 
 	modals()
-		.filter(containing(text, keywords()))
+		.filter(matching(text, some(keywords(), contains)))
 		.forEach(dismiss);
 
 	function modals() {
@@ -23,19 +23,27 @@
 		return modal.textContent;
 	}
 
-	function containing(text, keywords) {
-		return containing_;
+	function matching(text, search) {
+		return matching_;
 
-		function containing_(modal) {
+		function matching_(modal) {
 			return search(text(modal));
 		}
+	}
 
-		function search(text) {
-			return keywords.some(match);
+	function some(keywords, contains) {
+		return some_;
 
-			function match(keyword) {
-				return text.contains(keyword);
-			}
+		function some_(content) {
+			return keywords.some(contains(content));
+		}
+	}
+
+	function contains(content) {
+		return contains_;
+
+		function contains_(keyword) {
+			return content.contains(keyword);
 		}
 	}
 
