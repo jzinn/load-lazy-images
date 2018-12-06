@@ -12,8 +12,6 @@
 (function() {
 	'use strict';
 
-	console.log('EEEEEEEEEEEEEEEEEEEEE');
-
 	onhtml(oncss(run));
 
 	function onhtml(fn) {
@@ -36,24 +34,29 @@
 		return oncss_;
 
 		function oncss_() {
-			console.log('oncss_');
 			wait(styleSheets(), fn);
 		}
 	}
 
 	function wait(styleSheets, fn) {
-		styleSheets.forEach(oncomplete(after(styleSheets.length, fn)));
+		if (styleSheets.length)
+			styleSheets.forEach(oncomplete(after(styleSheets.length, fn)));
+		else setTimeout(fn);
 	}
 
 	function styleSheets() {
-		return Array.from(document.styleSheets);
+		// return Array.from(document.styleSheets);
+		return Array.from(
+			document.head.querySelectorAll('link[rel=stylesheet]')
+		).filter(function(ss) {
+			return !ss.sheet;
+		});
 	}
 
 	function oncomplete(fn) {
 		return oncomplete_;
 
 		function oncomplete_(element) {
-			console.log(element);
 			attach(once(fn, yelp('oncomplete function should only be called once')));
 
 			function attach(fn_) {
@@ -121,14 +124,12 @@
 		}
 
 		function process(node) {
-			return !element() || (candidate() && (restyle(node.style), true));
+			if (!(element() && wide())) return true;
+
+			fix(getComputedStyle(node), node.style);
 
 			function element() {
 				return node.nodeType === 1;
-			}
-
-			function candidate() {
-				return wide() && positioned(getComputedStyle(node).position);
 			}
 
 			function wide() {
@@ -137,15 +138,20 @@
 		}
 	}
 
-	function positioned(position) {
-		return position === 'fixed' || position === 'sticky';
-	}
+	function fix(computed, inline) {
+		unstyle('display', 'none');
+		unstyle('opacity', '0');
+		unstyle('position', 'absolute');
+		unstyle('position', 'fixed');
+		unstyle('position', 'sticky');
+		unstyle('visibility', 'hidden');
 
-	function restyle(style) {
-		initialize('position');
+		function unstyle(property, value) {
+			if (computed[property] === value) initialize(property);
+		}
 
 		function initialize(property) {
-			style.setProperty(property, 'initial', 'important');
+			inline.setProperty(property, 'initial', 'important');
 		}
 	}
 })();
