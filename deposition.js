@@ -12,7 +12,7 @@
 (function() {
 	'use strict';
 
-	onhtml(oncss(run));
+	onhtml(oncss(ontick(run)));
 
 	function onhtml(fn) {
 		loading() ? waitEvent() : waitTick();
@@ -107,6 +107,14 @@
 			if (--n) return;
 			setTimeout(fn);
 			fn = null;
+		}
+	}
+
+	function ontick(fn) {
+		return ontick_;
+
+		function ontick_() {
+			requestAnimationFrame(fn);
 		}
 	}
 
