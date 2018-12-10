@@ -111,10 +111,10 @@
 	}
 
 	function run() {
-		run_(document.body.clientWidth);
+		run_([0, window.innerWidth, document.body.clientWidth]);
 	}
 
-	function run_(WIDTH) {
+	function run_(widths) {
 		process(document.documentElement);
 		traverse(document.body);
 
@@ -126,16 +126,29 @@
 		function process(node) {
 			if (!(element() && wide())) return true;
 
-			fix(getComputedStyle(node), node.style);
+			if (node.clientWidth !== 0) fix(getComputedStyle(node), node.style);
 
 			function element() {
-				return node.nodeType === 1;
+				return node.nodeType === 1 && !metadata(node.nodeName);
 			}
 
 			function wide() {
-				return node.clientWidth === WIDTH;
+				return widths.includes(node.clientWidth);
 			}
 		}
+	}
+
+	function metadata(name) {
+		return (
+			name === 'BASE' ||
+			name === 'LINK' ||
+			name === 'META' ||
+			name === 'NOSCRIPT' ||
+			name === 'SCRIPT' ||
+			name === 'STYLE' ||
+			name === 'TEMPLATE' ||
+			name === 'TITLE'
+		);
 	}
 
 	function fix(computed, inline) {
