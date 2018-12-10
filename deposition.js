@@ -160,11 +160,11 @@
 		unstyle('visibility', 'hidden');
 
 		function unstyle(property, value) {
-			if (computed[property] === value) initialize(property);
+			if (computed[property] === value) initialize(inline, property);
 		}
+	}
 
-		function initialize(property) {
-			inline.setProperty(property, 'initial', 'important');
-		}
+	function initialize(inline, property) {
+		inline.setProperty(property, 'initial', 'important');
 	}
 })();
