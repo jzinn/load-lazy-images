@@ -168,7 +168,19 @@
 
 		function unstyle(property, predicate, arg, override) {
 			if (predicate(arg, computed.getPropertyValue(property)))
-				(override || initialize)(inline, property);
+				(override || initialize)(property);
+		}
+
+		function initialize(property) {
+			inline.setProperty(property, 'initial', 'important');
+		}
+
+		function unposition() {
+			inline.setProperty('position', 'relative', 'important');
+			unstyle('top', neq, '0px');
+			unstyle('right', neq, '0px');
+			unstyle('bottom', neq, '0px');
+			unstyle('left', neq, '0px');
 		}
 	}
 
@@ -182,17 +194,5 @@
 
 	function member(arg, value) {
 		return arg.includes(value);
-	}
-
-	function initialize(inline, property) {
-		inline.setProperty(property, 'initial', 'important');
-	}
-
-	function unposition(inline) {
-		inline.setProperty('position', 'relative', 'important');
-		inline.setProperty('top', '0', 'important');
-		inline.setProperty('right', '0', 'important');
-		inline.setProperty('bottom', '0', 'important');
-		inline.setProperty('left', '0', 'important');
 	}
 })();
