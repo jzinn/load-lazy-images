@@ -172,16 +172,16 @@
 		}
 	}
 
-	function eq(a, b) {
-		return a === b;
+	function eq(arg, value) {
+		return arg === value;
 	}
 
-	function neq(a, b) {
-		return a !== b;
+	function neq(arg, value) {
+		return arg !== value;
 	}
 
-	function member(array, value) {
-		return array.includes(value);
+	function member(arg, value) {
+		return arg.includes(value);
 	}
 
 	function initialize(inline, property) {
