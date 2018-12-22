@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"devDependencies": {
-		"prettier": "^1.13.5"
+		"prettier": "^1.15.3"
 	},
 	"scripts": {
 		"format": "prettier --write \"{*.js,package.json}\""
