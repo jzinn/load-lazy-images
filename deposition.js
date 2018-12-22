@@ -160,16 +160,20 @@
 	}
 
 	function fix(computed, inline) {
-		unstyle('display', 'none');
-		unstyle('opacity', '0');
-		unstyle('position', 'absolute');
-		unstyle('position', 'fixed');
-		unstyle('position', 'sticky');
-		unstyle('visibility', 'hidden');
+		unstyle('display', eq, 'none');
+		unstyle('opacity', eq, '0');
+		unstyle('position', eq, 'absolute');
+		unstyle('position', eq, 'fixed');
+		unstyle('position', eq, 'sticky');
+		unstyle('visibility', eq, 'hidden');
 
-		function unstyle(property, value) {
-			if (computed[property] === value) initialize(inline, property);
+		function unstyle(property, predicate, value) {
+			if (predicate(computed[property], value)) initialize(inline, property);
 		}
+	}
+
+	function eq(a, b) {
+		return a === b;
 	}
 
 	function initialize(inline, property) {
