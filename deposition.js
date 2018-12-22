@@ -165,6 +165,7 @@
 		unstyle('position', eq, 'absolute');
 		unstyle('position', eq, 'fixed');
 		unstyle('position', eq, 'sticky');
+		unstyle('transform', neq, 'none');
 		unstyle('visibility', eq, 'hidden');
 
 		function unstyle(property, predicate, value) {
@@ -174,6 +175,10 @@
 
 	function eq(a, b) {
 		return a === b;
+	}
+
+	function neq(a, b) {
+		return a !== b;
 	}
 
 	function initialize(inline, property) {
