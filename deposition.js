@@ -168,8 +168,8 @@
 		unstyle('transform', neq, 'none');
 		unstyle('visibility', eq, 'hidden');
 
-		function unstyle(property, predicate, value) {
-			if (predicate(value, computed.getPropertyValue(property)))
+		function unstyle(property, predicate, arg) {
+			if (predicate(arg, computed.getPropertyValue(property)))
 				initialize(inline, property);
 		}
 	}
