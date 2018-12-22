@@ -162,13 +162,13 @@
 	function fix(computed, inline) {
 		unstyle('display', eq, 'none');
 		unstyle('opacity', eq, '0');
-		unstyle('position', member, ['absolute', 'fixed', 'sticky']);
+		unstyle('position', member, ['absolute', 'fixed', 'sticky'], unposition);
 		unstyle('transform', neq, 'none');
 		unstyle('visibility', eq, 'hidden');
 
-		function unstyle(property, predicate, arg) {
+		function unstyle(property, predicate, arg, override) {
 			if (predicate(arg, computed.getPropertyValue(property)))
-				initialize(inline, property);
+				(override || initialize)(inline, property);
 		}
 	}
 
@@ -186,5 +186,13 @@
 
 	function initialize(inline, property) {
 		inline.setProperty(property, 'initial', 'important');
+	}
+
+	function unposition(inline) {
+		inline.setProperty('position', 'relative', 'important');
+		inline.setProperty('top', '0', 'important');
+		inline.setProperty('right', '0', 'important');
+		inline.setProperty('bottom', '0', 'important');
+		inline.setProperty('left', '0', 'important');
 	}
 })();
