@@ -162,9 +162,7 @@
 	function fix(computed, inline) {
 		unstyle('display', eq, 'none');
 		unstyle('opacity', eq, '0');
-		unstyle('position', eq, 'absolute');
-		unstyle('position', eq, 'fixed');
-		unstyle('position', eq, 'sticky');
+		unstyle('position', member, ['absolute', 'fixed', 'sticky']);
 		unstyle('transform', neq, 'none');
 		unstyle('visibility', eq, 'hidden');
 
@@ -180,6 +178,10 @@
 
 	function neq(a, b) {
 		return a !== b;
+	}
+
+	function member(array, value) {
+		return array.includes(value);
 	}
 
 	function initialize(inline, property) {
