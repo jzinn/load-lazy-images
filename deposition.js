@@ -161,7 +161,9 @@
 
 	function fix(computed, inline) {
 		unstyle('display', eq, 'none');
+		unstyle('height', always);
 		unstyle('opacity', eq, '0');
+		unstyle('overflow-y', eq, 'hidden');
 		unstyle('position', member, ['absolute', 'fixed', 'sticky'], unposition);
 		unstyle('transform', neq, 'none');
 		unstyle('transition-duration', neq, '0s', untransition);
@@ -187,6 +189,10 @@
 		function untransition() {
 			inline.setProperty('transition-property', 'none', 'important');
 		}
+	}
+
+	function always() {
+		return true;
 	}
 
 	function eq(arg, value) {
