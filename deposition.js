@@ -164,6 +164,7 @@
 		unstyle('opacity', eq, '0');
 		unstyle('position', member, ['absolute', 'fixed', 'sticky'], unposition);
 		unstyle('transform', neq, 'none');
+		unstyle('transition-duration', neq, '0s', untransition);
 		unstyle('visibility', eq, 'hidden');
 
 		function unstyle(property, predicate, arg, override) {
@@ -181,6 +182,10 @@
 			unstyle('right', neq, '0px');
 			unstyle('bottom', neq, '0px');
 			unstyle('left', neq, '0px');
+		}
+
+		function untransition() {
+			inline.setProperty('transition-property', 'none', 'important');
 		}
 	}
 
