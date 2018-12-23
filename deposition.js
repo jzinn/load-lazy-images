@@ -161,13 +161,14 @@
 
 	function fix(computed, inline) {
 		unstyle('display', eq, 'none');
-		unstyle('height', always);
 		unstyle('opacity', eq, '0');
 		unstyle('overflow-y', eq, 'hidden');
 		unstyle('position', member, ['absolute', 'fixed', 'sticky'], unposition);
 		unstyle('transform', neq, 'none');
 		unstyle('transition-duration', neq, '0s', untransition);
 		unstyle('visibility', eq, 'hidden');
+
+		naturalize('height', zeropx);
 
 		function unstyle(property, predicate, arg, override) {
 			if (predicate(arg, computed.getPropertyValue(property)))
@@ -189,10 +190,42 @@
 		function untransition() {
 			inline.setProperty('transition-property', 'none', 'important');
 		}
+
+		function naturalize(property, condition) {
+			stack(naturalize_);
+
+			function naturalize_(push, peek) {
+				push(value());
+				initialize(property);
+				push(value());
+				peek(undo);
+			}
+
+			function clear() {
+				inline.removeProperty(property);
+			}
+
+			function value() {
+				return computed.getPropertyValue(property);
+			}
+
+			function undo(a, b) {
+				if (a === b || condition(b)) clear();
+			}
+		}
 	}
 
-	function always() {
-		return true;
+	function stack(fn, a, b) {
+		fn(push, peek);
+
+		function push(value) {
+			a = b;
+			b = value;
+		}
+
+		function peek(fn) {
+			fn(a, b);
+		}
 	}
 
 	function eq(arg, value) {
@@ -205,5 +238,9 @@
 
 	function member(arg, value) {
 		return arg.includes(value);
+	}
+
+	function zeropx(value) {
+		return value === '0px';
 	}
 })();
