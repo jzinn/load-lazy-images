@@ -126,14 +126,15 @@
 		traverse(document.documentElement);
 
 		function traverse(node) {
-			if (process(node)) return;
-			node.childNodes.forEach(traverse);
+			process(node);
 		}
 
 		function process(node) {
-			if (!(element() && wide())) return true;
+			if (!(element() && wide())) return;
 
 			if (node.clientWidth !== 0) fix(getComputedStyle(node), node.style);
+
+			node.childNodes.forEach(traverse);
 
 			function element() {
 				return node.nodeType === 1 && !skip(node.nodeName);
