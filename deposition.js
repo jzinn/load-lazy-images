@@ -137,7 +137,7 @@
 			if (node.clientWidth !== 0) fix(getComputedStyle(node), node.style);
 
 			function element() {
-				return node.nodeType === 1 && !metadata(node.nodeName);
+				return node.nodeType === 1 && !skip(node.nodeName);
 			}
 
 			function wide() {
@@ -146,17 +146,8 @@
 		}
 	}
 
-	function metadata(name) {
-		return (
-			name === 'BASE' ||
-			name === 'LINK' ||
-			name === 'META' ||
-			name === 'NOSCRIPT' ||
-			name === 'SCRIPT' ||
-			name === 'STYLE' ||
-			name === 'TEMPLATE' ||
-			name === 'TITLE'
-		);
+	function skip(name) {
+		return ['HEAD', 'NOSCRIPT', 'SCRIPT', 'STYLE', 'TEMPLATE'].includes(name);
 	}
 
 	function fix(computed, inline) {
