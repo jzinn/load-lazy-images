@@ -123,8 +123,7 @@
 	}
 
 	function run_(widths) {
-		process(document.documentElement);
-		traverse(document.body);
+		traverse(document.documentElement);
 
 		function traverse(node) {
 			if (process(node)) return;
