@@ -123,18 +123,14 @@
 	}
 
 	function run_(widths) {
-		traverse(document.documentElement);
-
-		function traverse(node) {
-			process(node);
-		}
+		process(document.documentElement);
 
 		function process(node) {
 			if (!(element() && wide())) return;
 
 			if (node.clientWidth !== 0) fix(getComputedStyle(node), node.style);
 
-			node.childNodes.forEach(traverse);
+			node.childNodes.forEach(process);
 
 			function element() {
 				return node.nodeType === 1 && !skip(node.nodeName);
