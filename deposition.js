@@ -119,26 +119,24 @@
 	}
 
 	function run() {
-		run_([0, window.innerWidth, document.body.clientWidth]);
+		process(window.innerWidth, document.documentElement);
 	}
 
-	function run_(widths) {
-		process(document.documentElement);
+	function process(width, node) {
+		if (node.nodeType !== 1 || skip(node.nodeName)) return;
 
-		function process(node) {
-			if (!(element() && wide())) return;
+		fix(getComputedStyle(node), node.style);
 
-			if (node.clientWidth !== 0) fix(getComputedStyle(node), node.style);
+		if (wide()) node.childNodes.forEach(papply(process, node.clientWidth));
+		// node.childNodes.forEach(papply(process, wide() ? node.clientWidth : width));
 
-			node.childNodes.forEach(process);
-
-			function element() {
-				return node.nodeType === 1 && !skip(node.nodeName);
-			}
-
-			function wide() {
-				return widths.includes(node.clientWidth);
-			}
+		function wide() {
+			return (
+				width ===
+				node.getBoundingClientRect().width +
+					parseFloat(getComputedStyle(node).marginLeft) +
+					parseFloat(getComputedStyle(node).marginRight)
+			);
 		}
 	}
 
@@ -146,16 +144,36 @@
 		return ['HEAD', 'NOSCRIPT', 'SCRIPT', 'STYLE', 'TEMPLATE'].includes(name);
 	}
 
+	// partial function application
+	function papply(fn, a) {
+		return papply_;
+
+		function papply_(b) {
+			fn(a, b);
+		}
+	}
+
 	function fix(computed, inline) {
-		unstyle('display', eq, 'none');
+		// unstyle('display', eq, 'none');
+
+		// initialize('height');
+
 		unstyle('opacity', eq, '0');
-		unstyle('overflow-y', eq, 'hidden');
-		unstyle('position', member, ['absolute', 'fixed', 'sticky'], unposition);
-		unstyle('transform', neq, 'none');
+		// unstyle('overflow-y', eq, 'hidden');
+		// unstyle('position', member, ['absolute', 'fixed', 'sticky'], unposition);
+		unstyle('position', member, ['fixed', 'sticky'], unposition);
 		unstyle('transition-duration', neq, '0s', untransition);
+		// unstyle('transform', neq, 'none');
 		unstyle('visibility', eq, 'hidden');
 
-		naturalize('height', zeropx);
+		// initialize('min-height');
+		// initialize('max-height');
+		// initialize('height');
+
+		// unstyle('min-height', neq, 'auto');
+		// unstyle('max-height', neq, 'none');
+
+		// naturalize('height', zeropx);
 
 		function unstyle(property, predicate, arg, override) {
 			if (predicate(arg, computed.getPropertyValue(property)))
@@ -168,10 +186,16 @@
 
 		function unposition() {
 			inline.setProperty('position', 'relative', 'important');
+
 			unstyle('top', neq, '0px');
 			unstyle('right', neq, '0px');
 			unstyle('bottom', neq, '0px');
 			unstyle('left', neq, '0px');
+
+			unstyle('transform', neq, 'none');
+			unstyle('overflow-y', eq, 'hidden');
+
+			// initialize('height');
 		}
 
 		function untransition() {
