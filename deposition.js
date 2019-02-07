@@ -119,7 +119,14 @@
 	}
 
 	function run() {
+		minimum(document.documentElement);
+		minimum(document.body);
 		process(window.innerWidth, document.documentElement);
+	}
+
+	function minimum(node) {
+		if (getComputedStyle(node).getPropertyValue('display') === 'none')
+			node.style.setProperty('display', 'initial', 'important');
 	}
 
 	function process(width, node) {
