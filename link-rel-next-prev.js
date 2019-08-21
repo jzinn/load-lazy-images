@@ -36,7 +36,13 @@
 			}
 
 			function matches() {
-				return event.key === key;
+				return event.key === key && modified();
+			}
+
+			function modified() {
+				return (
+					!event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey
+				);
 			}
 		}
 
