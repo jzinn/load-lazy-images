@@ -1,6 +1,6 @@
 {
 	"private": true,
 	"dependencies": {
-		"prettier": "^1.15.3"
+		"prettier": "^1.19.1"
 	}
 }
