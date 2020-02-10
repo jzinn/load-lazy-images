@@ -127,6 +127,8 @@
 	function minimum(node) {
 		if (getComputedStyle(node).getPropertyValue('display') === 'none')
 			node.style.setProperty('display', 'initial', 'important');
+		if (getComputedStyle(node).getPropertyValue('visibility') === 'hidden')
+			node.style.setProperty('visibility', 'initial', 'important');
 	}
 
 	function process(width, node) {
