@@ -8,12 +8,10 @@
 // @grant        none
 // ==/UserScript==
 
-(function() {
+(function () {
 	'use strict';
 
-	links()
-		.filter(truncated)
-		.forEach(expand);
+	links().filter(truncated).forEach(expand);
 
 	function links() {
 		return Array.from(document.querySelectorAll('a'));

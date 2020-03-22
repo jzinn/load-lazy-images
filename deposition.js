@@ -9,7 +9,7 @@
 // @grant        none
 // ==/UserScript==
 
-(function() {
+(function () {
 	'use strict';
 
 	onhtml(oncss(ontick(run)));
@@ -48,7 +48,7 @@
 		// return Array.from(document.styleSheets);
 		return Array.from(
 			document.head.querySelectorAll('link[rel=stylesheet]')
-		).filter(function(ss) {
+		).filter(function (ss) {
 			return !ss.sheet;
 		});
 	}

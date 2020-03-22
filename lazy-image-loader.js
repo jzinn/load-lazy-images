@@ -9,7 +9,7 @@
 // @grant        none
 // ==/UserScript==
 
-(function() {
+(function () {
 	'use strict';
 
 	elementsBy('img').forEach(update);

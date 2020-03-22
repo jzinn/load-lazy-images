@@ -16,7 +16,7 @@ console.log(cfDecodeEmail('543931142127353935313e352e7a373b39'));
 
 /////
 
-!(function() {
+!(function () {
 	'use strict';
 	function e(e) {
 		try {
@@ -91,7 +91,7 @@ console.log(cfDecodeEmail('543931142127353935313e352e7a373b39'));
 		f = 'data-cfemail',
 		d = document.createElement('div');
 	i(document),
-		(function() {
+		(function () {
 			var e =
 				document.currentScript || document.scripts[document.scripts.length - 1];
 			e.parentNode.removeChild(e);

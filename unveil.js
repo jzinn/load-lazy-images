@@ -11,7 +11,7 @@
 
 // http://www.idownloadblog.com/2016/11/28/tips-tricks-macbook-pro-touch-bar/
 
-(function(WIDTH) {
+(function (WIDTH) {
 	'use strict';
 
 	process(document.documentElement);
