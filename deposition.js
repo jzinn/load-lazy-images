@@ -80,6 +80,10 @@
 		}
 	}
 
+	// The world's smallest state machine framework in JavaScript?
+	//
+	//     const m=a=>()=>a(b=>{a=b});
+	//
 	function start(state) {
 		return transition;
 
